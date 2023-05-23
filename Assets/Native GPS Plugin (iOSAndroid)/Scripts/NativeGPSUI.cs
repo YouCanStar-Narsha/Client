@@ -7,14 +7,14 @@ using UnityEngine.Android;
 
 public class NativeGPSUI : MonoBehaviour
 {
-    public Text text;
-    bool locationIsReady = false;
-    bool locationGrantedAndroid = false;
-    GameObject dialog = null;
+    [SerializeField] protected Text text;
+    protected bool locationIsReady = false;
+    protected bool locationGrantedAndroid = false;
+    protected GameObject dialog = null;
 
-    private void Start() 
+    protected virtual void Start()
     {
-        #if PLATFORM_ANDROID
+#if PLATFORM_ANDROID
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             Permission.RequestUserPermission(Permission.FineLocation);
@@ -26,34 +26,34 @@ public class NativeGPSUI : MonoBehaviour
             locationIsReady = NativeGPSPlugin.StartLocation();
         }
 
-        #elif PLATFORM_IOS
+#elif PLATFORM_IOS
 
         locationIsReady = NativeGPSPlugin.StartLocation();
     
-        #endif
+#endif
     }
 
-    private void Update() 
+    protected virtual void Update()
     {
         if (locationIsReady)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("Longitude: "+NativeGPSPlugin.GetLongitude());
-            sb.AppendLine("Latitude: "+NativeGPSPlugin.GetLatitude());
-            sb.AppendLine("Accuracy: "+NativeGPSPlugin.GetAccuracy());
-            sb.AppendLine("Altitude: "+NativeGPSPlugin.GetAltitude());
-            sb.AppendLine("Speed: "+NativeGPSPlugin.GetSpeed());
-            sb.AppendLine("Speed Accuracy Meters Per Second: "+NativeGPSPlugin.GetSpeedAccuracyMetersPerSecond());
-            sb.AppendLine("Vertical Accuracy Meters: "+NativeGPSPlugin.GetVerticalAccuracyMeters());
+            sb.AppendLine("Longitude: " + NativeGPSPlugin.GetLongitude());
+            sb.AppendLine("Latitude: " + NativeGPSPlugin.GetLatitude());
+            sb.AppendLine("Accuracy: " + NativeGPSPlugin.GetAccuracy());
+            sb.AppendLine("Altitude: " + NativeGPSPlugin.GetAltitude());
+            sb.AppendLine("Speed: " + NativeGPSPlugin.GetSpeed());
+            sb.AppendLine("Speed Accuracy Meters Per Second: " + NativeGPSPlugin.GetSpeedAccuracyMetersPerSecond());
+            sb.AppendLine("Vertical Accuracy Meters: " + NativeGPSPlugin.GetVerticalAccuracyMeters());
 
             text.text = sb.ToString();
         }
     }
 
-    void OnGUI ()
+    protected virtual void OnGUI()
     {
-        #if PLATFORM_ANDROID
+#if PLATFORM_ANDROID
         if (!Permission.HasUserAuthorizedPermission(Permission.FineLocation))
         {
             // The user denied permission to use the fineLocation.
@@ -73,6 +73,6 @@ public class NativeGPSUI : MonoBehaviour
 
             Destroy(dialog);
         }
-        #endif
+#endif
     }
 }
