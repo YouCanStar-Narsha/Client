@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c69e488e3ebfbf34caab1b5518c38401
-      internalID: 2101767218
+      spriteID: 17e7206a9280bf742a548dfd89c89ea9
+      internalID: 386316022
       vertices: []
       indices: 
       edges: []
@@ -151,8 +151,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: abff4f1a91cbbc243b726b704d7d7c0d
-      internalID: -424532360
+      spriteID: b1fe346ef33b9854b8ec0fa2ca5f6af6
+      internalID: 1922243011
       vertices: []
       indices: 
       edges: []
@@ -172,8 +172,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2aebec1fa9da06d4a8626660d1eb4344
-      internalID: 849588159
+      spriteID: f7580ecadda14e94a969cca18a1a7f57
+      internalID: 1285765620
       vertices: []
       indices: 
       edges: []
@@ -189,9 +189,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      YouCanStar_UI_Icon_0: 2101767218
-      YouCanStar_UI_Icon_2: 849588159
-      YouCanStar_UI_Icon_1: -424532360
+      YouCanStar_UI_Icon_0: 386316022
+      YouCanStar_UI_Icon_2: 1285765620
+      YouCanStar_UI_Icon_1: 1922243011
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
