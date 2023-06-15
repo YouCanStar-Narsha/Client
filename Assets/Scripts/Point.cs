@@ -13,6 +13,13 @@ public class Point : MonoBehaviour
 
     private void OnMouseDown()
     {
-        camera.MoveToPoint(transform.position);
+        if (camera.targetTransform==transform)
+        {
+            camera.MoveToZero();
+		}
+        else
+        {
+            camera.MoveToPoint(transform);
+        }
     }
 }

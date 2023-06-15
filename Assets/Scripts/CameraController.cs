@@ -1,30 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Drawing;
 using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    [SerializeField] private Transform zero;
     [SerializeField] private Vector3 offset;
 
-    private Vector3 targetPosition;
+    public Transform targetTransform;
+    public bool isOn;
 
     private void Awake()
     {
-
-    }
+        MoveToZero();
+	}
 
     private void Update()
     {
-		transform.position = Vector3.Lerp(transform.position, targetPosition + offset, Time.deltaTime * 10);
+        if (isOn)
+        {
+		    transform.position = Vector3.Lerp(transform.position, targetTransform.position+offset, Time.deltaTime * 10);
+        }
+        else
+        {
+			transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * 10);
+		}
 	}
 
-    public void MoveToPoint(Vector3 targetPos)
+    public void MoveToPoint(Transform target)
     {
-        targetPosition = targetPos;
+        isOn = true;
+		targetTransform = target;
 	}
 
 	public void MoveToZero()
 	{
-        targetPosition = new Vector3(0, 5f, -5f);
+        isOn = false;
+		targetTransform = zero;
 	}
 }
