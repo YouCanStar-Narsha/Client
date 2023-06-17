@@ -26,7 +26,7 @@ public class LoadingSceneManager : MonoBehaviour
         while (!op.isDone)
         {
             yield return null;
-            if (op.progress >= 0.9f)
+            if (op.progress >= 1.0f)
             {
                 op.allowSceneActivation = true;
                 yield break;

@@ -2,19 +2,14 @@ using UnityEngine;
 
 public class PopUp : MonoBehaviour
 {
-    [SerializeField] protected GameObject popUpObject;
-	protected UIController ui;
+    [SerializeField] private GameObject popUpObject;
 
-	private void Awake()
-	{
-		ui = FindObjectOfType<UIController>();
-	}
-	public virtual void EnablePopUp()
+    public void EnablePopUp()
     {
         popUpObject.SetActive(true);
     }
 
-    public virtual void DisablePopUp()
+    public void DisablePopUp()
     {
         popUpObject.SetActive(false);
     }
