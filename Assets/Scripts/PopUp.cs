@@ -3,8 +3,13 @@ using UnityEngine;
 public class PopUp : MonoBehaviour
 {
     [SerializeField] protected GameObject popUpObject;
+	protected UIController ui;
 
-    public virtual void EnablePopUp()
+	private void Awake()
+	{
+		ui = FindObjectOfType<UIController>();
+	}
+	public virtual void EnablePopUp()
     {
         popUpObject.SetActive(true);
     }

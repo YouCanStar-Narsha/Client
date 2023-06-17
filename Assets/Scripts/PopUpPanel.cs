@@ -4,21 +4,16 @@ using UnityEngine;
 
 public class PopUpPanel : PopUp
 {
-	[SerializeField] private float showTime = 0.5f;
-	private UIController ui;
-
-	private void Awake()
-	{
-		ui = FindObjectOfType<UIController>();
-	}
 
 	public override void EnablePopUp()
 	{
+		ui.DownUI();
 		StartCoroutine("ShowPanel");
 	}
 
 	public override void DisablePopUp()
 	{
+		ui.UpUI();
 		StartCoroutine("DownPanel");
 	}
 
@@ -29,17 +24,20 @@ public class PopUpPanel : PopUp
 		ui.doNotTouchPanel.SetActive(true);
 		popUpObject.SetActive(true);
 		panel.position = ui.startPanelPos.position;
-		float time = 0;
-		float t = time / showTime;
-		while (time < showTime)
+		Vector3 targetPos = ui.endPanelPos.position;
+
+		while (true)
 		{
-			time += Time.deltaTime;
-			t = time / showTime;
-			t = Mathf.Sin(t * Mathf.PI * 0.51f);
-			panel.position = Vector3.Lerp(ui.startPanelPos.position, ui.endPanelPos.position, t);
+			panel.position = Vector3.Lerp(panel.position, targetPos, Time.deltaTime * 10);
+			if (Vector3.Distance(panel.position, targetPos) < 1)
+			{
+				panel.position = targetPos;
+				ui.doNotTouchPanel.SetActive(false);
+				yield break;
+			}
+
 			yield return null;
 		}
-		ui.doNotTouchPanel.SetActive(false);
 	}
 	private IEnumerator DownPanel()
 	{
@@ -47,17 +45,20 @@ public class PopUpPanel : PopUp
 		ui.doNotTouchPanel.SetActive(true);
 		RectTransform panel = popUpObject.GetComponent<RectTransform>();
 		panel.position = ui.endPanelPos.position;
-		float time = 0;
-		float t = time / showTime;
-		while (time < showTime)
+		Vector3 targetPos = ui.startPanelPos.position;
+
+		while (true)
 		{
-			time += Time.deltaTime;
-			t = time / showTime;
-			t = Mathf.Sin(t * Mathf.PI * 0.51f);
-			panel.position = Vector3.Lerp(ui.endPanelPos.position, ui.startPanelPos.position, t);
+			panel.position = Vector3.Lerp(panel.position, targetPos, Time.deltaTime * 10);
+			if (Vector3.Distance(panel.position, targetPos) < 1)
+			{
+				panel.position = targetPos;
+				popUpObject.SetActive(false);
+				ui.doNotTouchPanel.SetActive(false);
+				yield break;
+			}
+
 			yield return null;
 		}
-		popUpObject.SetActive(false);
-		ui.doNotTouchPanel.SetActive(false);
 	}
 }
