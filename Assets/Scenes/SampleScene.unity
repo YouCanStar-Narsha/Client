@@ -221,11 +221,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1874776137}
   gpsPath:
-    x: 128.5350104
-    y: 35.8223217
-  gpsPointMargin: 100000
+    x: 128.4137578
+    y: 35.6627655
+  gpsPointMargin: 500000
   parentTranform: {fileID: 1523934351}
   pin: {fileID: 736755780022910375, guid: c525eb5886e9fdd40adf8f9520549bc9, type: 3}
+  placePinPath:
+  - x: 128.4134445
+    y: 35.6631402
+  - x: 128.4141687
+    y: 35.6631275
+  - x: 128.4139925
+    y: 35.662468
 --- !u!4 &238209663
 Transform:
   m_ObjectHideFlags: 0
@@ -632,8 +639,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 382}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 0, y: 260}
+  m_SizeDelta: {x: 160, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1874776136
 CanvasRenderer:
@@ -670,10 +677,10 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 10
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 3
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
+    m_VerticalOverflow: 1
     m_LineSpacing: 1
   m_Text: New Text
