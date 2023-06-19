@@ -18,18 +18,18 @@ public class GPSPinMove : NativeGPSUI
 	[SerializeField] private List<TwinsDouble> placePinPath = new List<TwinsDouble>();
 	
 	// 생성한 맵핀 오브젝트
-	private RectTransform pinClone;
+	private Transform pinClone;
 
 	protected override void Start()
 	{
 		base.Start();
 		// 맵핀 오브젝트 생성 후 저장
-		pinClone = Instantiate(pin, parentTranform).GetComponent<RectTransform>();
+		pinClone = Instantiate(pin, parentTranform).GetComponent<Transform>();
 
 		foreach (TwinsDouble d in placePinPath)
 		{
-			RectTransform rt = Instantiate(mark, parentTranform).GetComponent<RectTransform>();
-			rt.localPosition = new Vector3((float)((d.x - gpsPath.x) * gpsPointMargin), (float)((d.y - gpsPath.y) * gpsPointMargin));
+			Transform trans = Instantiate(mark, parentTranform).GetComponent<Transform>();
+			trans.localPosition = new Vector3((float)((d.x - gpsPath.x) * gpsPointMargin), 0, (float)((d.y - gpsPath.y) * gpsPointMargin));
 		}
 	}
 
@@ -40,6 +40,6 @@ public class GPSPinMove : NativeGPSUI
 		 * gpsPath 값을 빼서 gpsPath의 위도와 경도를 중심으로 만든 후
 		 * gpsPointMargin을 곱하여 게임 내 좌표 이동값을 조정한다.
 		 */
-		pinClone.localPosition = new Vector3((float)((NativeGPSPlugin.GetLongitude() - gpsPath.x) * gpsPointMargin), (float)((NativeGPSPlugin.GetLatitude() - gpsPath.y) * gpsPointMargin));
+		pinClone.localPosition = new Vector3((float)((NativeGPSPlugin.GetLongitude() - gpsPath.x) * gpsPointMargin), 0, (float)((NativeGPSPlugin.GetLatitude() - gpsPath.y) * gpsPointMargin));
 	}
 }
