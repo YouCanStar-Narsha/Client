@@ -18,6 +18,7 @@ public class Point : MonoBehaviour
 
     private void OnMouseDown()
     {
+
         if (camera.targetTransform==transform)
         {
 			Close();
@@ -39,6 +40,8 @@ public class Point : MonoBehaviour
 
 	public void Open()
 	{
+		if (ui.downUI) return;
+
 		ui.isShow = true;
 		camera.MoveToPoint(transform);
 		ui.DownUI();

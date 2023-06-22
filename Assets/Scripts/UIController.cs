@@ -15,6 +15,7 @@ public class UIController : MonoBehaviour
 	public Vector3 stagePos;
 	
 	public bool isShow = false;
+	public bool downUI = false;
 
 	private Vector3 currentPos;
 	private Vector3 nomalPos;
@@ -29,6 +30,7 @@ public class UIController : MonoBehaviour
 
 	public void DownUI()
 	{
+		downUI = true;
 		currentPos = startPanelPos.position;
 		StopCoroutine("UICo");
 		StartCoroutine("UICo");
@@ -36,6 +38,7 @@ public class UIController : MonoBehaviour
 
 	public void UpUI()
 	{
+		downUI = false;
 		currentPos = nomalPos;
 		StopCoroutine("UICo");
 		StartCoroutine("UICo");
