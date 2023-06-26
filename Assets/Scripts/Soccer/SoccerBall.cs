@@ -35,18 +35,28 @@ public class SoccerBall : MonoBehaviour
     {
 		isShot = false;
         rigid.velocity = Vector3.zero;
+        rigid.rotation = Quaternion.identity;
 		transform.position = new Vector3(0, 0.3f, -3.5f);
 	}
 
     private void TryTraking()
     {
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButtonDown(0) && !isTraking)
         {
 			if (isShot) return;
 
+			float set = 0.15f;
+
+			Vector3 offset = new Vector3(0, 0, -3.5f);
+
+			Vector3 dir = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+			dir.x -= 0.5f;
+			dir.x *= 9;
+			dir.y *= 16;
+			transform.position = ((dir + Vector3.up) * set) + offset;
 			isTraking = true;
 		}
-        else
+        else if(Input.GetMouseButtonUp(0) && isTraking)
         {
             isTraking = false;
             TryShot();
@@ -79,8 +89,7 @@ public class SoccerBall : MonoBehaviour
 
     private void Shot()
     {
-        print("½¸");
-        rigid.velocity = new Vector3(rigid.velocity.x, rigid.velocity.y * 0.22f, rigid.velocity.y * 1f);
+        rigid.velocity = new Vector3(rigid.velocity.x, rigid.velocity.y * 0.25f, rigid.velocity.y * 1.2f);
     }
 
     private void OnTriggerEnter(Collider other)
