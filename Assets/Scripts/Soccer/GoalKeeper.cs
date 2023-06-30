@@ -19,7 +19,7 @@ public class GoalKeeper : MonoBehaviour
         transform.position += Vector3.right * moveSpeed * transInt * Time.deltaTime;
         if(Mathf.Abs(transform.position.x) >= moveSize)
         {
-            transform.position = new Vector3 ((moveSize - 0.05f) * transInt, 0.5f, 2);
+            transform.position = new Vector3 ((moveSize - 0.05f) * transInt, 0.75f, 2);
             transInt *= -1;
         }
     }

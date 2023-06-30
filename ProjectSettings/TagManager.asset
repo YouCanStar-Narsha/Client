@@ -6,6 +6,8 @@ TagManager:
   tags:
   - SoccerBall
   - Goal
+  - Good Food
+  - Bad Food
   layers:
   - Default
   - TransparentFX

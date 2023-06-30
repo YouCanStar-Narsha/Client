@@ -35,7 +35,7 @@ public class SoccerBall : MonoBehaviour
     {
 		isShot = false;
         rigid.velocity = Vector3.zero;
-        rigid.rotation = Quaternion.identity;
+		rigid.angularVelocity = Vector3.zero;
 		transform.position = new Vector3(0, 0.3f, -3.5f);
 	}
 
@@ -75,7 +75,9 @@ public class SoccerBall : MonoBehaviour
     {
         if (isTraking)
         {
-            float set = 0.15f;
+			float set = 0.15f;
+
+			rigid.angularVelocity = Vector3.zero;
 
             Vector3 offset = new Vector3(0, 0, -3.5f);
 
@@ -89,8 +91,10 @@ public class SoccerBall : MonoBehaviour
 
     private void Shot()
     {
-        rigid.velocity = new Vector3(rigid.velocity.x, rigid.velocity.y * 0.25f, rigid.velocity.y * 1.2f);
-    }
+        rigid.angularVelocity = new Vector3(rigid.velocity.y * 360f, 0,0);
+
+		rigid.velocity = new Vector3(rigid.velocity.x, rigid.velocity.y * 0.25f, rigid.velocity.y * 1.2f);
+	}
 
     private void OnTriggerEnter(Collider other)
     {
